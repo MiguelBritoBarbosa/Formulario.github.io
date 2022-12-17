@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Registro</title>
+
+    <script defer>
+        window.mascaraTelefone = function mascaraTelefone(event) {
+        let tecla = event.key;
+        let telefone = event.target.value.replace(/\D+/g, "");
+
+        if (/^[0-9]$/i.test(tecla)) {
+            telefone = telefone + tecla;
+            let tamanho = telefone.length;
+
+            if (tamanho >= 12) {
+                return false;
+            }
+            
+            if (tamanho > 10) {
+                telefone = telefone.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+            } else if (tamanho > 5) {
+                telefone = telefone.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+            } else if (tamanho > 2) {
+                telefone = telefone.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+            } else {
+                telefone = telefone.replace(/^(\d*)/, "($1");
+            }
+
+            event.target.value = telefone;
+        }
+
+        if (!["Backspace", "Delete"].includes(tecla)) {
+            return false;
+        }
+    }
+
+    </script>
+
+
+
+</head>
+<body>
+    
+    <div class="container col-11 col-md-9" id="form-container">
+        <div class="row gx-5">
+            <div class="col-md-6">
+                <h2>Faça o Cadastro</h2>   
+                <form>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Digite seu nome">
+                        <label for="name" class="form-label">Digite seu nome</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Digite seu sobrenome">
+                        <label for="lastname" class="form-label">Digite seu sobrenome</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">
+                        <label for="email" class="form-label">Digite seu Email</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="telefone" placeholder="(11) 99999-9999" name="telefone" onkeydown="return mascaraTelefone(event)" maxlength="15">
+                        <label for="telefone" class="form-label">Digite seu telefone</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Digite sua senha">
+                        <label for="password" class="form-label">Crie uma senha</label>
+                    </div> 
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" name="agree-form" id="agree-form" value="Aceito">
+                        <label for="agree-form" class="form-check-label">Você aceita os <a href="#">termos de serviço</a></label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" name="newsletter" id="newsletter" value="Sim" checked>
+                        <label for="newsletter" class="form-check-label">Deseja receber nossas Newsletter?</label>
+                    </div>
+                    <div class="d-grid mb-4">
+                        <input type="submit" class="btn btn-purple btn-block" value="Cadastrar-se">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="./img/SignIn.svg">
+                            <img src="../img/MobileSignIn.svg" alt="Cadastro" class="img-fluid" >
+                        </picture>
+                    </div>
+                    <div class="col-12" id="link-container">
+                        <a href="./login.html">Já tenho uma conta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
